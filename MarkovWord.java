@@ -29,7 +29,6 @@ public class MarkovWord implements IMarkovModel{
         
         for(int k=0; k < numWords-myOrder; k++){
             ArrayList<String> follows = getFollows(kGram);
-            //System.out.println(follows);
             if (follows.size() == 0) {
                 break;
             }
