@@ -66,10 +66,13 @@ public class EfficientMarkovWord implements IMarkovModel{
         System.out.println(indexOf(words, target,start));
     }
     
+    //get follows now only has to look up the arrayList instead of generating one.
     private ArrayList<String> getFollows(WordGram kGram) {
         return myMap.get(kGram);
     }
     
+    //builds a map where every possible subarrray in the text is mapped to an ArrayList of words that 
+    //immediately follow occurences of it.
     public void buildMap(){
         
         for(int i=0;i<myText.length-myOrder+1;i++){
@@ -97,8 +100,8 @@ public class EfficientMarkovWord implements IMarkovModel{
         printHashMapInfo();
     }
     
+    //prints info about the hashmap to make sure its woking properly
     public void printHashMapInfo(){
-        //System.out.println("Keys: "+myMap.keySet());
         System.out.println("Number of Keys: "+myMap.size());
         int max=0;
         for(WordGram wg : myMap.keySet()){
