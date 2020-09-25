@@ -1,6 +1,8 @@
 import edu.duke.*;
 
 public class MarkovRunner {
+    
+    //generates 3 blocks of text of a specified size
     public void runModel(IMarkovModel markov, String text, int size){ 
         markov.setTraining(text); 
         System.out.println("running with " + markov); 
@@ -9,7 +11,8 @@ public class MarkovRunner {
             printOut(st); 
         } 
     } 
-
+    
+    //overloaded runModel method that allows user to set a seed
     public void runModel(IMarkovModel markov, String text, int size, int seed){ 
         markov.setTraining(text); 
         markov.setRandom(seed);
@@ -19,7 +22,8 @@ public class MarkovRunner {
             printOut(st); 
         } 
     } 
-
+    
+    //creates instance of a markov word class and passes it to the run model method
     public void runMarkov() { 
         FileResource fr = new FileResource(); 
         String st = fr.asString(); 
@@ -27,7 +31,8 @@ public class MarkovRunner {
         MarkovWord markovWord = new MarkovWord(5); 
         runModel(markovWord, st, 200,844); 
     } 
-
+    
+    //prints out the generated text
     private void printOut(String s){
         String[] words = s.split("\\s+");
         int psize = 0;
@@ -43,6 +48,7 @@ public class MarkovRunner {
         System.out.println("\n----------------------------------");
     } 
     
+    //tests hashpmap to make sure its working properly
     public void testHashMap(){
    
         FileResource fr = new FileResource(); 
@@ -54,6 +60,7 @@ public class MarkovRunner {
         
     }
     
+    //Compares  performance of efficient and inefficient methods
     public void compareMethods(){
         FileResource fr = new FileResource(); 
         String st = fr.asString(); 
