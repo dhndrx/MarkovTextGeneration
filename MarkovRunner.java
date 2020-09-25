@@ -55,7 +55,6 @@ public class MarkovRunner {
     }
     
     public void compareMethods(){
-        
         FileResource fr = new FileResource(); 
         String st = fr.asString(); 
         st = st.replace('\n', ' '); 
@@ -63,10 +62,22 @@ public class MarkovRunner {
         MarkovWord markovWord = new MarkovWord(2); 
         EfficientMarkovWord eMarkovWord = new EfficientMarkovWord(2); 
         
-        runModel(markovWord, st, 100,42);
+        long startTime = System.currentTimeMillis();
+        runModel(markovWord, st, 1000,42);
+        long endTime = System.currentTimeMillis();
+        double inefficient = endTime - startTime;
+        System.out.println("That took " + inefficient + " milliseconds\n");
+        
         System.out.println("Starting efficient markov...");
-        runModel(eMarkovWord, st, 100,42);
-    
+        
+        startTime = System.currentTimeMillis();
+        runModel(eMarkovWord, st, 1000,42);
+        endTime = System.currentTimeMillis();
+        double efficient = endTime - startTime;
+        System.out.println("That took " + efficient + " milliseconds\n");
+        
+        System.out.println("\nInefficent: " + inefficient + " milliseconds\n");
+        System.out.println("Efficient: " + efficient + " milliseconds\n");
     }
 
 }
