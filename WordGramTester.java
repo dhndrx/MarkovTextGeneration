@@ -23,7 +23,6 @@ public class WordGramTester {
 		WordGram first = list.get(0);
 		System.out.println("checking "+first);
 		for(int k=0; k < list.size(); k++){
-			//if (first == list.get(k)) {
 			  if (first.equals(list.get(k))) {
 				System.out.println("matched at "+k+" "+list.get(k));
 			}
