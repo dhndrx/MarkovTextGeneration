@@ -1,11 +1,3 @@
-
-/**
- * Write a description of class MarkovRunner here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
-
 import edu.duke.*;
 
 public class MarkovRunner {
