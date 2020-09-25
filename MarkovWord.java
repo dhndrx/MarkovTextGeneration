@@ -7,7 +7,7 @@ public class MarkovWord implements IMarkovModel{
     private int myOrder;
     
     public MarkovWord(int order) {
-        myOrder = order;
+        myOrder = order;//order is the number of preceding words used to determine a following word
         myRandom = new Random();
     }
     
@@ -15,13 +15,17 @@ public class MarkovWord implements IMarkovModel{
         myRandom = new Random(seed);
     }
     
+    //takes in training text which will provide a pool of words 
+    //to be used to generate sentences
     public void setTraining(String text){
         myText = text.split("\\s+");
     }
     
+    //Generates a specified amount of random text.
     public String getRandomText(int numWords){
         StringBuilder sb = new StringBuilder();
-        int index = myRandom.nextInt(myText.length-myOrder);  // random word to start with
+        //grabs random subarray and uses it to create a wordgram object
+        int index = myRandom.nextInt(myText.length-myOrder);  
         WordGram kGram = new WordGram(myText,index,myOrder);
         
         sb.append(kGram.toString());
@@ -42,6 +46,8 @@ public class MarkovWord implements IMarkovModel{
         return sb.toString().trim();
     }
     
+    //used by getFollows method to find the first instance of the first 
+    //word in the current wordGram's string array
     public int indexOf(String [] words, WordGram target, int start){
         
         for(int i=start;i<words.length-target.length();i++){
@@ -54,7 +60,7 @@ public class MarkovWord implements IMarkovModel{
         
         return -1;
     }
-    
+    //test to make sure index of is working properly
     public void testIndexOf(){
         String s = "you thought that this was just a test, this is just a test";
         String [] words = s.split(" ");
@@ -63,6 +69,8 @@ public class MarkovWord implements IMarkovModel{
         System.out.println(indexOf(words, target,start));
     }
     
+    //build an arraylist of words that immediately follow the current wordGram
+    //the next word in the generated text will be selected from this list.
     private ArrayList<String> getFollows(WordGram kGram) {
         ArrayList<String> follows = new ArrayList<String>();
         int idx=0, start=0;
